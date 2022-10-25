@@ -1,0 +1,30 @@
+.header {
+    height: 7rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: lightgrey;
+    font-size: 28px;
+    align-items: center;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+.blue {
+    color: blue;
+}
+
+.red {
+    color: red;
+}
+
+.logo-container {
+    display: flex;
+    gap: 10px;
+}
+
+.timer {
+    color: white;
+}
