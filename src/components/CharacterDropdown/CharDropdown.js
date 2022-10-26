@@ -36,8 +36,6 @@ const CharDropdown = (props) => {
 
   const characters = getChars();
 
-  console.log(props.class);
-
   return <div className="dropdown-menu">{characters}</div>;
 };
 
