@@ -2,6 +2,7 @@ import '../Styles/Home.css';
 import Card from './Card';
 import { levels } from '../assets/Levels';
 import { useEffect, useState } from 'react';
+import Header from './Header';
 
 const Home = () => {
   const [gameCards, setGameCards] = useState([]);
@@ -15,17 +16,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home-screen">
-      <div className="card-game-container">
-        {gameCards}
-        <div className="button-container"></div>
+    <>
+      <Header inGame={false} chars={null} />
+      <div className="home-screen">
+        <div className="card-game-container">{gameCards}</div>
       </div>
-      <div className="leaderboard-container">
-        <button className="to-leaderboard" type="button">
-          Leaderboard
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 

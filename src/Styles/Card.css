@@ -29,21 +29,6 @@
     justify-content: center;
 }
 
-.leaderboard-container {
-    margin-top: 1rem;
-}
-
-.to-leaderboard {
-    font-size: 30px;
-    padding: .7rem .7rem;
-    background-color: rgba(73, 131, 218, 0.932);
-    font-weight: 500;
-    border: 0px;
-    font-family: inherit;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 a {
     text-decoration: none;
     color: black;

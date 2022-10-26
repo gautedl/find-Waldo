@@ -14,19 +14,17 @@ const Card = (props) => {
   }, [props.chars]);
 
   return (
-    <>
-      <Link to={props.title}>
-        <div className="card-container">
-          <div className="img-lvl-container">
-            <img className="lvl-img" src={props.img} alt="img" />
-            <div className="title-container">
-              <span className="lvl-title">{props.title}</span>
-            </div>
+    <Link to={props.title}>
+      <div className="card-container">
+        <div className="img-lvl-container">
+          <img className="lvl-img" src={props.img} alt="img" />
+          <div className="title-container">
+            <span className="lvl-title">{props.title}</span>
           </div>
-          <div className="characters">{char}</div>
         </div>
-      </Link>
-    </>
+        <div className="characters">{char}</div>
+      </div>
+    </Link>
   );
 };
 

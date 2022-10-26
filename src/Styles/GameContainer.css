@@ -1,0 +1,9 @@
+.waldo-img {
+    width: 80%;
+}
+
+.waldo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}

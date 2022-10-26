@@ -28,3 +28,28 @@ a {
 .timer {
     color: white;
 }
+
+.leaderboard-container {
+    margin-top: 1rem;
+}
+
+.to-leaderboard {
+    font-size: 30px;
+    padding: .7rem .7rem;
+    background-color: rgba(73, 131, 218, 0.932);
+    font-weight: 500;
+    border: 0px;
+    font-family: inherit;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.char-img-header {
+    height: 4rem;
+}
+
+.character-container {
+    display: flex;
+    gap: 1rem;
+}
+
