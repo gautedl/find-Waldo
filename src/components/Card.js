@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import '../Styles/Card.css';
 import { Link } from 'react-router-dom';
 
 const Card = (props) => {
-  const [char, setChar] = useState([]);
+  // const [char, setChar] = useState([]);
 
-  useEffect(() => {
-    setChar(
-      props.chars.map((x) => (
-        <img className="char-img" src={x.src} alt="" key={x.char} />
-      ))
-    );
-  }, [props.chars]);
+  const char = props.chars.map((x) => (
+    <img className="char-img" src={x.src} alt="" key={x.char} />
+  ));
+
+  // useEffect(() => {
+  //   setChar(
+
+  //   );
+  // }, [props.chars]);
 
   return (
     <Link to={props.title}>

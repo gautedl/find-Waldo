@@ -1,5 +1,5 @@
 .header {
-    height: 7rem;
+    height: 5rem;
     display: flex;
     justify-content: space-around;
     background-color: lightgrey;
@@ -45,7 +45,7 @@ a {
 }
 
 .char-img-header {
-    height: 4rem;
+    height:  4rem;
 }
 
 .character-container {
@@ -53,3 +53,6 @@ a {
     gap: 1rem;
 }
 
+.found {
+    opacity: 50%;
+}

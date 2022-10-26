@@ -1,23 +1,25 @@
 import '../Styles/Home.css';
 import Card from './Card';
 import { levels } from '../assets/Levels';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import Header from './Header';
 
 const Home = () => {
-  const [gameCards, setGameCards] = useState([]);
+  // const [gameCards, setGameCards] = useState([]);
 
-  useEffect(() => {
-    setGameCards(
-      levels.map((x) => (
-        <Card img={x.src} title={x.title} chars={x.chars} key={x.title} />
-      ))
-    );
-  }, []);
+  const gameCards = levels.map((x) => (
+    <Card img={x.src} title={x.title} chars={x.chars} key={x.title} />
+  ));
+
+  // useEffect(() => {
+  //   setGameCards(
+
+  //   );
+  // }, []);
 
   return (
     <>
-      <Header inGame={false} chars={null} />
+      <Header inGame={false} chars={undefined} />
       <div className="home-screen">
         <div className="card-game-container">{gameCards}</div>
       </div>

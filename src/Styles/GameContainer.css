@@ -7,3 +7,12 @@
     justify-content: center;
     margin-top: 1rem;
 }
+
+.position {
+    position: absolute;
+}
+
+.hidden {
+    display: none;
+}
+

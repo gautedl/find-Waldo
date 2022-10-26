@@ -1,23 +1,41 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Stopwatch from '../assets/Stopwatch';
 import '../Styles/Header.css';
 
 const Header = ({ inGame, chars }) => {
-  const [char, setChar] = useState([]);
-  console.log(chars);
+  // const [char, setChar] = useState([]);
 
-  useEffect(() => {
-    if (chars === null || chars === undefined) {
-      setChar(<></>);
+  const getChars = () => {
+    if (chars === undefined) {
+      return <></>;
     } else {
-      setChar(
-        chars.map((x) => (
+      return chars.map((x) =>
+        x.found === false ? (
           <img className="char-img-header" src={x.src} alt="" key={x.char} />
-        ))
+        ) : (
+          <img
+            className="char-img-header found"
+            src={x.src}
+            alt=""
+            key={x.char}
+          />
+        )
       );
     }
-  }, [chars]);
+  };
+
+  const characters = getChars();
+
+  // useEffect(() => {
+  //   if (chars === undefined) {
+  //     setChar(<></>);
+  //   } else {
+  //     setChar(
+
+  //     );
+  //   }
+  // }, [chars]);
 
   return (
     <nav className="header">
@@ -27,7 +45,7 @@ const Header = ({ inGame, chars }) => {
           <span className="red">Waldo</span>
         </div>
       </Link>
-      <div className="character-container">{char}</div>
+      <div className="character-container">{characters}</div>
       <div className="leaderboard-container">
         {inGame === false ? (
           <button className="to-leaderboard" type="button">
