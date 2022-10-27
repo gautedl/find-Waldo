@@ -5,35 +5,38 @@ import { levels } from '../assets/Levels';
 import '../Styles/GameContainer.css';
 import CharDropdown from './CharacterDropdown/CharDropdown';
 import Header from './Header';
+import { firestore } from '../firebase/config';
+
+const boundaryCheck = (coord, ref) => {
+  //Checks if gisen set of coordinates are whitin +- 0.3 of ref coord
+  const lowerRange = ref - 0.3;
+  const upperRange = ref - 0.3;
+
+  if (coord > lowerRange && coord <= upperRange) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 const GameContainer = () => {
   const { id } = useParams();
   const [posLeft, setPosLeft] = useState();
   const [posTop, setPosTop] = useState();
   const [divClass, setDivClass] = useState('position hidden');
-  const [scrollPosition, setScrollPosition] = useState(0);
 
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
+  const getDataFromFirestore = (level, character) => {
+    firestore
+      .collection(level)
+      .doc(character)
+      .get()
+      .then((snapshot) => {
+        const data = snapshot.data();
+
+        return data;
+      });
   };
-
-  const handleWindowClick = (e) => {
-    console.log(e.target.dataset.type);
-    if (e.target.dataset.type !== 'image') {
-      setDivClass('position hidden');
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('click', handleWindowClick);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('click', handleWindowClick);
-    };
-  }, []);
+  // getDataFromFirestore(id);
 
   const getLvl = () => {
     for (const element of levels) {
@@ -63,8 +66,28 @@ const GameContainer = () => {
   };
 
   const selectChar = (e) => {
-    setPosTop(e.clientY + scrollPosition);
-    setPosLeft(e.clientX);
+    setPosLeft(
+      Math.round(
+        (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
+      )
+    );
+
+    setPosTop(
+      Math.round(
+        (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
+      )
+    );
+
+    console.log(
+      'left ' +
+        Math.round(
+          (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
+        ),
+      'top ' +
+        Math.round(
+          (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
+        )
+    );
 
     setDivClass('position');
   };
@@ -73,15 +96,20 @@ const GameContainer = () => {
     <>
       <Header inGame={true} chars={chars} />
       <div className="waldo-container">
-        <img
-          className="waldo-img"
-          src={lvl.src}
-          alt=""
-          onClick={selectChar}
-          data-type="image"
-        />
-        <div className={divClass} style={{ left: posLeft, top: posTop }}>
-          <CharDropdown chars={lvl.chars} handleClick={handleClick} />
+        <div className="relative">
+          <img
+            className="waldo-img"
+            src={lvl.src}
+            alt=""
+            onClick={selectChar}
+            data-type="image"
+          />
+          <div
+            className={divClass}
+            style={{ left: posLeft + '%', top: posTop + '%' }}
+          >
+            <CharDropdown chars={lvl.chars} handleClick={handleClick} />
+          </div>
         </div>
       </div>
     </>
