@@ -30,7 +30,7 @@ export const levels = [
   {
     src: lvl4,
     title: 'Level 4',
-    chars: getCharactersByName(['Waldo', 'Odlaw']),
+    chars: getCharactersByName(['Waldo', 'Odlaw', 'Wenda']),
   },
   {
     src: lvl5,

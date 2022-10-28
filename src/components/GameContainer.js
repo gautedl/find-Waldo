@@ -6,17 +6,12 @@ import '../Styles/GameContainer.css';
 import CharDropdown from './CharacterDropdown/CharDropdown';
 import Header from './Header';
 import { firestore } from '../firebase/config';
+import Errormsg from '../assets/Errormsg';
+import Successmsg from '../assets/Successmsg';
 
-const boundaryCheck = (coord, ref) => {
-  //Checks if gisen set of coordinates are whitin +- 0.3 of ref coord
-  const lowerRange = ref - 0.3;
-  const upperRange = ref - 0.3;
-
-  if (coord > lowerRange && coord <= upperRange) {
-    return true;
-  } else {
-    return false;
-  }
+const boundaryCheck = (coord, pos) => {
+  if (coord - pos >= -1 && coord - pos <= 1) return true;
+  return false;
 };
 
 const GameContainer = () => {
@@ -24,48 +19,13 @@ const GameContainer = () => {
   const [posLeft, setPosLeft] = useState();
   const [posTop, setPosTop] = useState();
   const [divClass, setDivClass] = useState('position hidden');
-
-  const getDataFromFirestore = (level, character) => {
-    firestore
-      .collection(level)
-      .doc(character)
-      .get()
-      .then((snapshot) => {
-        const data = snapshot.data();
-
-        return data;
-      });
-  };
-  // getDataFromFirestore(id);
-
-  const getLvl = () => {
-    for (const element of levels) {
-      if (id === element.title) {
-        return element;
-      }
-    }
-  };
-
-  const lvl = getLvl();
-  const [chars, setChars] = useState(
-    lvl.chars.map((obj) => ({ ...obj, found: false }))
-  );
-
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    const newArr = chars.map((obj) => {
-      if (obj.char === e.currentTarget.dataset.type) {
-        return { ...obj, found: true };
-      }
-
-      return obj;
-    });
-
-    setChars(newArr);
-  };
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [foundChar, setFoundChar] = useState(false);
 
   const selectChar = (e) => {
+    setError(false);
+    setSuccess(false);
     setPosLeft(
       Math.round(
         (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
@@ -92,9 +52,88 @@ const GameContainer = () => {
     setDivClass('position');
   };
 
+  const fetchData = async (level, char) => {
+    const data = await firestore.collection(level).doc(char).get();
+
+    return data.data();
+  };
+
+  const getLvl = () => {
+    for (const element of levels) {
+      if (id === element.title) {
+        return element;
+      }
+    }
+  };
+
+  const lvl = getLvl();
+  const [chars, setChars] = useState(
+    lvl.chars.map((obj) => ({ ...obj, found: false }))
+  );
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const charName = e.currentTarget.dataset.type;
+
+    try {
+      const coords = await fetchData(id, charName);
+
+      if (
+        boundaryCheck(coords.pos[0], posLeft) &&
+        boundaryCheck(coords.pos[1], posTop)
+      ) {
+        const newArr = chars.map((obj) => {
+          if (obj.char === charName) {
+            return { ...obj, found: true };
+          }
+
+          return obj;
+        });
+
+        setFoundChar(charName);
+        setChars(newArr);
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 2000);
+      } else {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleWindowClick = (e) => {
+    if (e.target.dataset.type !== 'image') {
+      setDivClass('position hidden');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleWindowClick);
+
+    return () => {
+      window.removeEventListener('click', handleWindowClick);
+    };
+  }, []);
+
   return (
     <>
       <Header inGame={true} chars={chars} />
+      {error && (
+        <div className="feedback-message">
+          <Errormsg />
+        </div>
+      )}
+      {success && (
+        <div className="feedback-message">
+          <Successmsg char={foundChar} />
+        </div>
+      )}
       <div className="waldo-container">
         <div className="relative">
           <img
@@ -104,6 +143,7 @@ const GameContainer = () => {
             onClick={selectChar}
             data-type="image"
           />
+
           <div
             className={divClass}
             style={{ left: posLeft + '%', top: posTop + '%' }}

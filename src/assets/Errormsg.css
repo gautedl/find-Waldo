@@ -1,0 +1,20 @@
+
+
+.error-content {
+    position: fixed;
+    top: 100px;
+    z-index: 1;
+    background-color: red;
+    color: white;
+    clip-path: polygon(0 100%, 100% 100%, 100% 16%, 60% 16%, 50% 0, 40% 16%, 0 16%);
+    height: 70px;
+    width: 100px;
+    
+}
+
+.msg {
+    margin-top: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
