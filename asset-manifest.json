@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/find-waldo/static/css/main.31ba83f1.css",
+    "main.js": "/find-waldo/static/js/main.a579ce46.js",
+    "static/media/odlaw.jpg": "/find-waldo/static/media/odlaw.5a40de4416a5f9bd41fd.jpg",
+    "index.html": "/find-waldo/index.html",
+    "main.31ba83f1.css.map": "/find-waldo/static/css/main.31ba83f1.css.map",
+    "main.a579ce46.js.map": "/find-waldo/static/js/main.a579ce46.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31ba83f1.css",
+    "static/js/main.a579ce46.js"
+  ]
+}
