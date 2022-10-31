@@ -9,6 +9,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/find-waldo" element={<Home />} />
           <Route path="/game/:id" element={<GameContainer />} />
           <Route path="/leaderboard/Level%201" element={<Leaderboard />} />
           <Route path="/leaderboard/:id" element={<Leaderboard />} />
