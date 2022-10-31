@@ -1,6 +1,6 @@
 # Find Waldo game
 
-https://gautedl.github.io/find-waldo
+https://gautedl.github.io/find-Waldo
 
 Built with react, and Firebase as a backend to store images, score and validate coordinates of a guess.
 
