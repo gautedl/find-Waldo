@@ -36,7 +36,7 @@ const Header = ({ inGame, chars, finished, goHome }) => {
   );
 
   const leaderboardBtn = (
-    <Link to="/leaderboard">
+    <Link to="/leaderboard/Level%201">
       <button className="to-leaderboard" type="button">
         Leaderboard
       </button>

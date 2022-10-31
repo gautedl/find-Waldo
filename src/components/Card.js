@@ -8,7 +8,7 @@ const Card = (props) => {
   ));
 
   return (
-    <Link to={props.title}>
+    <Link to={`game/${props.title}`}>
       <div className="card-container">
         <div className="img-lvl-container">
           <img className="lvl-img" src={props.img} alt="img" />

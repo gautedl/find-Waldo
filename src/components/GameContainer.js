@@ -142,7 +142,7 @@ const GameContainer = () => {
 
   return (
     <>
-      <Header inGame={true} chars={chars} finished={finished} />
+      <Header inGame={true} chars={chars} finished={finished} goHome={true} />
 
       {error && (
         <div className="feedback-message">
@@ -171,7 +171,9 @@ const GameContainer = () => {
             className={divClass}
             style={{ left: posLeft + '%', top: posTop + '%' }}
           >
-            <CharDropdown chars={lvl.chars} handleClick={handleClick} />
+            {!finished && (
+              <CharDropdown chars={lvl.chars} handleClick={handleClick} />
+            )}
           </div>
         </div>
       </div>

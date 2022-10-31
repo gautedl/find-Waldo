@@ -1,0 +1,109 @@
+.leaderboard-container {
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+table {
+    border-collapse: collapse;
+
+}
+
+.leaderboard-table {
+    width: 100%;
+    text-align: left;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+.table-header {
+    background-color: rgb(240, 240, 240);
+    padding: 5px;
+    margin: 0;
+    height: 2.5rem;
+}
+
+.name-container {
+    width: 60%;
+}
+
+.level-btns {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+td {
+    padding: 5px;
+    font-weight: 350;
+    color: rgba(0, 0, 0, 0.582);
+}
+
+
+tr {
+    border: 1px solid lightgray;
+}
+
+th {
+    color: rgba(0, 0, 0, 0.795);
+}
+
+.single-level-btn {
+    font-size: 30px;
+    font-weight: 300;
+    padding: 20px;
+}
+
+.single-level-btn:hover {
+    background-color: rgba(240, 240, 240, 0.705);
+}
+
+.single-level-btn-active {
+    background-color: rgba(240, 240, 240, 0.705);
+    font-weight: 500;
+}
+
+.footer-cont {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.6rem;
+}
+
+.play-level {
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+@-webkit-keyframes pulse-grow-on-hover {
+    to {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+}
+
+@keyframes pulse-grow-on-hover {
+    to {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+}
+.pulse-grow-on-hover {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+
+}
+.pulse-grow-on-hover:hover, .pulse-grow-on-hover:focus, .pulse-grow-on-hover:active {
+    -webkit-animation-name: pulse-grow-on-hover;
+    animation-name: pulse-grow-on-hover;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+}
