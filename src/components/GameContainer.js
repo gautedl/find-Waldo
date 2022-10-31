@@ -47,17 +47,6 @@ const GameContainer = () => {
       )
     );
 
-    console.log(
-      'left ' +
-        Math.round(
-          (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
-        ),
-      'top ' +
-        Math.round(
-          (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
-        )
-    );
-
     setDivClass('position');
   };
 
@@ -99,7 +88,6 @@ const GameContainer = () => {
           return obj;
         });
         if (isGameDone(newArr)) {
-          console.log(finishedTime);
           setFinished(true);
 
           setTimeout(() => {

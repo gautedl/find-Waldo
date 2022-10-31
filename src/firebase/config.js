@@ -1,6 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { getFirestore } from 'firebase/firestore';
+import 'firebase/storage';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBDWG7srEJsGnP3rDt--B82MH3abgCOreY',
@@ -17,5 +19,6 @@ const db = getFirestore(app);
 
 // const auth = firebase.auth();
 const firestore = firebase.firestore();
+const storage = getStorage(app, 'gs://find-waldo-677d2.appspot.com/');
 
-export { firebase, firestore, db };
+export { firebase, firestore, db, storage };
