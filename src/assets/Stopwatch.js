@@ -5,7 +5,11 @@ const Stopwatch = (props) => {
 
   useEffect(() => {
     let interval;
-    if (props.running) {
+    if (props.finished) {
+      setFinishedTime(time);
+      // console.log(time);
+      // console.log(finishedTime);
+    } else if (props.running) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
       }, 10);
@@ -13,7 +17,8 @@ const Stopwatch = (props) => {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [props.running]);
+  }, [props, time]);
+
   return (
     <div className="stopwatch">
       <div className="numbers">
@@ -26,3 +31,9 @@ const Stopwatch = (props) => {
 };
 
 export default Stopwatch;
+
+export let finishedTime;
+const setFinishedTime = (time) => {
+  finishedTime = time;
+  console.log(finishedTime);
+};

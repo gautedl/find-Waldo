@@ -1,0 +1,48 @@
+.finished-popup {
+    background-color: white;
+    height: 100%;
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid green;
+}
+
+.finished-title {
+    color: green;
+    font-size: 3rem;
+    margin-top: 20px;
+}
+
+.finished-text {
+    font-size: 1.5rem;
+}
+
+.time-text {
+    color: green;
+    text-decoration: underline;
+}
+
+.finished-name {
+    height: 4rem;
+    width: 70%;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.575);
+    font-weight: 700;
+}
+
+.finished-btns {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 20px;
+}
+
+.cancel-btn, .finish-btn {
+    font-size: 1.2rem;
+    padding: 5px;
+}
+
+.placeholder::placeholder {
+    color: red;
+}

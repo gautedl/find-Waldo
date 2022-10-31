@@ -1,6 +1,7 @@
 import Home from './components/Home';
 import GameContainer from './components/GameContainer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Leaderboard from './components/Leaderboard';
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:id" element={<GameContainer />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/leaderboard/:id" element={<Leaderboard />} />
         </Routes>
       </div>
     </Router>

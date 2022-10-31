@@ -3,17 +3,9 @@ import '../Styles/Card.css';
 import { Link } from 'react-router-dom';
 
 const Card = (props) => {
-  // const [char, setChar] = useState([]);
-
   const char = props.chars.map((x) => (
     <img className="char-img" src={x.src} alt="" key={x.char} />
   ));
-
-  // useEffect(() => {
-  //   setChar(
-
-  //   );
-  // }, [props.chars]);
 
   return (
     <Link to={props.title}>

@@ -8,10 +8,16 @@ import Header from './Header';
 import { firestore } from '../firebase/config';
 import Errormsg from '../assets/Errormsg';
 import Successmsg from '../assets/Successmsg';
+import FinishedGamePop from './FinishedGamePop';
+import { finishedTime } from '../assets/Stopwatch';
 
 const boundaryCheck = (coord, pos) => {
   if (coord - pos >= -1 && coord - pos <= 1) return true;
   return false;
+};
+
+const isGameDone = (arr) => {
+  return arr.every((obj) => obj.found === true);
 };
 
 const GameContainer = () => {
@@ -22,6 +28,9 @@ const GameContainer = () => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [foundChar, setFoundChar] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [endTime, setEndTime] = useState(0);
 
   const selectChar = (e) => {
     setError(false);
@@ -89,9 +98,19 @@ const GameContainer = () => {
 
           return obj;
         });
+        if (isGameDone(newArr)) {
+          console.log(finishedTime);
+          setFinished(true);
+
+          setTimeout(() => {
+            setEndTime(finishedTime);
+            setShowModal(true);
+          }, 10);
+        }
 
         setFoundChar(charName);
         setChars(newArr);
+
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
@@ -123,7 +142,8 @@ const GameContainer = () => {
 
   return (
     <>
-      <Header inGame={true} chars={chars} />
+      <Header inGame={true} chars={chars} finished={finished} />
+
       {error && (
         <div className="feedback-message">
           <Errormsg />
@@ -134,6 +154,9 @@ const GameContainer = () => {
           <Successmsg char={foundChar} />
         </div>
       )}
+      <div className="finished" style={{ left: '50%', top: '30%' }}>
+        {showModal && <FinishedGamePop lvl={id} time={endTime} />}
+      </div>
       <div className="waldo-container">
         <div className="relative">
           <img
