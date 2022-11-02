@@ -99,10 +99,12 @@ const GameContainer = () => {
         setFoundChar(charName);
         setChars(newArr);
 
-        setSuccess(true);
-        setTimeout(() => {
-          setSuccess(false);
-        }, 2000);
+        if (!isGameDone(newArr)) {
+          setSuccess(true);
+          setTimeout(() => {
+            setSuccess(false);
+          }, 2000);
+        }
       } else {
         setError(true);
         setTimeout(() => {

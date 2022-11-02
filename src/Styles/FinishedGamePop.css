@@ -47,9 +47,13 @@
     color: red;
 }
 
-input:focus {
-    outline: none
+input {
+  border: 1px solid lightgray;
+}
 
+input:focus {
+    outline: 1px solid green;
+    border: 0px;
 }
 
 
@@ -105,12 +109,4 @@ input:focus {
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   color: rgba(0, 0, 0, 0.65);
   transform: translateY(0);
-}
-
-.overlay {
-
- 
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
 }
